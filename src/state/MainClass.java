@@ -14,7 +14,7 @@ public class MainClass {
 		
 		while (runFlag) {
 			
-			System.out.println("M - Modalità; I - Incrementa / illuminazione; Q - Esci \n ");
+			System.out.println("M - Modalità I - Incrementa / illuminazione  Q - Esci \n ");
 			
 			try {
 				c = System.in.read();

@@ -1,6 +1,6 @@
 package state;
 
-
+import java.util.Calendar;
 
 public class Clock {
 
@@ -10,11 +10,20 @@ public class Clock {
 	
 	private InternalState clockState;
 	
+	int ora,min;
+	
+	Calendar cal;
+	
 	public Clock() {
 		
 		normalState = new NormalDisplayState();
 		updatingHoursState = new UpdatingHoursState();
 		updatingMinutesState = new UpdatingMinutesState();
+		
+		cal = Calendar.getInstance();
+		
+		ora = cal.get(Calendar.HOUR_OF_DAY);
+		min = cal.get(Calendar.MINUTE);
 		
 		clockState =  InternalState.N;
 		outState = normalState;
@@ -25,7 +34,16 @@ public class Clock {
 		outState = s;
 	}
 	
+	public void displayTime() {
+		System.out.print(ora);
+		System.out.print(":");
+		System.out.print(min);
+		System.out.println("\n--------------\n");
+	}
+	
 	public void modeButton() {
+		
+		displayTime();
 		
 		switch (clockState) {
 		
@@ -53,6 +71,7 @@ public class Clock {
 	}
 	
 	public void  changeButton() {
+			displayTime();
 			outState.changeButton();
 	}
 	
