@@ -5,7 +5,10 @@ public class NormalDisplayState implements State  {
 	
 	private String descr;
 	
-	public NormalDisplayState() {
+	Clock c;
+	
+	public NormalDisplayState(Clock c) {
+		this.c =c;
 		descr = "Modalità normale  ";
 	}
 	

@@ -4,8 +4,11 @@ public class UpdatingMinutesState implements State {
 
 	private String descr;
 	
-	public UpdatingMinutesState() {
+	Clock c;
+	
+	public UpdatingMinutesState(Clock c) {
 		descr = "Modalità cambio minuto";
+		this.c = c;
 	}
 	
 	@Override
@@ -18,6 +21,7 @@ public class UpdatingMinutesState implements State {
 	public void changeButton() {
 		// TODO Auto-generated method stub
 		System.out.println(descr + " .. incremento minuto\n");
+		c.incMin();
 	}
 
 }

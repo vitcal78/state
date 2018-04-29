@@ -4,7 +4,10 @@ public class UpdatingHoursState implements State {
 
 	private String descr;
 	
-	public UpdatingHoursState() {
+	Clock c;
+	
+	public UpdatingHoursState(Clock c) {
+		this.c = c;
 		descr = "Modalità cambio ora";
 	}
 	
@@ -18,6 +21,7 @@ public class UpdatingHoursState implements State {
 	public void changeButton() {
 		// TODO Auto-generated method stub
 		System.out.println(descr + " .. incremento ora\n");
+		c.incHour();
 	}
 
 }
