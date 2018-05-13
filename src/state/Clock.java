@@ -35,11 +35,11 @@ public class Clock {
 	}
 	
 	public void displayTime() {
-		System.out.println("\n----------------\n");
+		System.out.println("\n***----------------**\n");
 		System.out.print(ora);
 		System.out.print(":");
 		System.out.print(min);
-		System.out.println("\n----------------\n");
+		System.out.println("\n**----------------**\n");
 	}
 	
 	public void incHour() {
