@@ -2,6 +2,8 @@ package state;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -26,7 +28,7 @@ public class Clock extends JFrame {
 	
 	Calendar cal;
 	
-	JLabel orarioLabel;
+	JLabel orarioLabel,statusLabel;
 	JButton luceButton,modButton;
 	
 	public Clock() {
@@ -44,7 +46,7 @@ public class Clock extends JFrame {
 		outState = normalState;
 		
 		setTitle("Radiosveglia");
-		setSize(500, 300);
+		setSize(500, 150);
 		setLocation(300, 300);
 		
 		setLayout(new FlowLayout());
@@ -55,11 +57,20 @@ public class Clock extends JFrame {
 		
 		
 		luceButton = new JButton("Incrementa/Luce");
+		luceButton.addActionListener(new ChangeButton());
+		
+		
 		modButton = new JButton("Modalità");
+		modButton.addActionListener(new ModeButton());
+		
+		statusLabel = new JLabel("Modalità normale");
+		
 		
 		add(orarioLabel);
 		add(luceButton);
 		add(modButton);
+	    add(statusLabel);			
+		
 		
 		setVisible(true);
 		
@@ -88,41 +99,51 @@ public class Clock extends JFrame {
 		displayTime();
 	}
 	
-	public void modeButton() {
-		
-		displayTime();
-		
-		switch (clockState) {
-		
-			case N: {
-				System.out.println("\n passo alla modalità cambio ora \n");
-				clockState = InternalState.H;
-				setState(updatingHoursState);
-				break;
+	private class ModeButton implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			displayTime();
+			
+			switch (clockState) {
+			
+				case N: {
+					statusLabel.setText("Modalità cambio ora");					
+					clockState = InternalState.H;
+					setState(updatingHoursState);
+					break;
+				}
+				case H: {
+					statusLabel.setText("Modalità cambio minuto");
+					clockState = InternalState.M;
+					setState(updatingMinutesState);
+					break;
+				}
+				case M: {
+					statusLabel.setText("Modalità normale");
+					clockState = InternalState.N;
+					setState(normalState);
+					break;
+				}
+				default : {
+					
+				}
+			
 			}
-			case H: {
-				System.out.println("\n passo alla modalità cambio minuto \n");
-				clockState = InternalState.M;
-				setState(updatingMinutesState);
-				break;
-			}
-			case M: {
-				System.out.println("\n passo alla modalità normale \n");
-				clockState = InternalState.N;
-				setState(normalState);
-				break;
-			}
-			default : {
-				
-			}
-		
+ 			
 		}
 		
 	}
 	
-	public void  changeButton() {
-			displayTime();
-			outState.changeButton();
+	private class ChangeButton implements ActionListener {			
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				displayTime();
+				outState.changeButton();
+			}
+			
 	}
 	
 }

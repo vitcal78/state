@@ -15,13 +15,13 @@ public class NormalDisplayState implements State  {
 	@Override
 	public void modeButton() {
 		// TODO Auto-generated method stub
-		System.out.println(descr+" Cambio modalità..\n");
+		
 	}
 
 	@Override
 	public void changeButton() {
 		// TODO Auto-generated method stub
-		System.out.println(descr + " ...E luce fu....\n");
+		
 	}
 
 }
