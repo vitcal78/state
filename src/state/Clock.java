@@ -1,8 +1,20 @@
 package state;
 
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.util.Calendar;
 
-public class Clock {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Clock extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 
 	private State outState,normalState,updatingHoursState,updatingMinutesState;
 	
@@ -10,9 +22,12 @@ public class Clock {
 	
 	private InternalState clockState;
 	
-	int ora,min;
+	Integer ora,min;
 	
 	Calendar cal;
+	
+	JLabel orarioLabel;
+	JButton luceButton,modButton;
 	
 	public Clock() {
 		
@@ -28,6 +43,27 @@ public class Clock {
 		clockState =  InternalState.N;
 		outState = normalState;
 		
+		setTitle("Radiosveglia");
+		setSize(500, 300);
+		setLocation(300, 300);
+		
+		setLayout(new FlowLayout());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		orarioLabel = new JLabel(ora.toString()+":"+min.toString());
+		orarioLabel.setFont(new Font("Courier New", Font.BOLD, 18));
+		
+		
+		luceButton = new JButton("Incrementa/Luce");
+		modButton = new JButton("Modalità");
+		
+		add(orarioLabel);
+		add(luceButton);
+		add(modButton);
+		
+		setVisible(true);
+		
+		
 	}
 	
 	private void setState(State s) {
@@ -35,11 +71,9 @@ public class Clock {
 	}
 	
 	public void displayTime() {
-		System.out.println("\n***----------------**\n");
-		System.out.print(ora);
-		System.out.print(":");
-		System.out.print(min);
-		System.out.println("\n**----------------**\n");
+
+		orarioLabel.setText(ora.toString()+":"+min.toString());
+		
 	}
 	
 	public void incHour() {
