@@ -140,7 +140,7 @@ public class Clock extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				displayTime();
+				displayTime();				
 				outState.changeButton();
 			}
 			

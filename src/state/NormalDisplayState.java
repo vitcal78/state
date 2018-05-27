@@ -1,5 +1,7 @@
 package state;
 
+import java.awt.Color;
+
 public class NormalDisplayState implements State  {
 
 	
@@ -21,6 +23,13 @@ public class NormalDisplayState implements State  {
 	@Override
 	public void changeButton() {
 		// TODO Auto-generated method stub
+		
+		if (c.orarioLabel.getForeground()==Color.lightGray) {
+			c.orarioLabel.setForeground(Color.black);
+		}
+		    else {
+		    	c.orarioLabel.setForeground(Color.lightGray);
+		    }			   
 		
 	}
 
