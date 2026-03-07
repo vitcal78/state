@@ -5,7 +5,7 @@ public class HelloWorldContext {
 	private HelloWorldState state;
 
 	public HelloWorldContext() {
-		state = new HelloState();
+		state = HelloState.getInstance();
 	}
 
 	public void setState(HelloWorldState state) {
